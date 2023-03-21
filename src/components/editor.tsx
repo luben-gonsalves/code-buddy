@@ -26,7 +26,7 @@ const Editor: React.FC<Props> = (props) => {
     }
   }, [editorView])
 
-  return <div className="h-full w-full " ref={refContainer}></div>
+  return <div className="h-full w-full" ref={refContainer}></div>
 }
 
 export default Editor

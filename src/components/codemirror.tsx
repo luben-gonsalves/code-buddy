@@ -49,12 +49,24 @@ const useCodeMirror = <T extends Element>(
       state: startState,
       parent: refContainer.current,
     })
+
     setEditorView(view)
 
     return () => {
       view.destroy()
     }
   }, [refContainer])
+
+  useEffect(() => {
+    if (!editorView) return
+    editorView.dispatch({
+      changes: {
+        from: 0,
+        to: editorView.state.doc.length,
+        insert: props.initialDoc,
+      },
+    })
+  }, [props.initialDoc])
 
   return [refContainer, editorView]
 }
