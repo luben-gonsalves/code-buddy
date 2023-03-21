@@ -19,6 +19,17 @@ const Editor: React.FC<Props> = (props) => {
   })
 
   useEffect(() => {
+    if (!editorView) return
+    editorView.dispatch({
+      changes: {
+        from: 0,
+        to: editorView.state.doc.length,
+        insert: props.initialDoc,
+      },
+    })
+  }, [props.initialDoc])
+
+  useEffect(() => {
     if (editorView) {
       // Do nothing for now
     } else {

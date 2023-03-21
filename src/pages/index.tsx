@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Editor from '../components/editor'
 import { io, Socket } from 'socket.io-client'
 
@@ -22,11 +22,9 @@ export default function Home() {
     fetch('/api/socket')
     socket = io()
 
-    socket.on('receive-message', save)
-  }
-
-  const save = (data: string) => {
-    setDoc(data)
+    socket.on('receive-message', (data: string) => {
+      setDoc(data)
+    })
   }
 
   const handleDocChange = (newDoc: string) => {
