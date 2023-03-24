@@ -20,6 +20,7 @@ const Editor: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (!editorView) return
+    if (props.initialDoc === editorView.state.doc.toString()) return
     editorView.dispatch({
       changes: {
         from: 0,
